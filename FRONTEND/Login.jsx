@@ -1,71 +1,108 @@
-import React from 'react'
-import { useState,useEffect } from 'react'
+import { useNavigate, Link } from "react-router-dom";
+import { useState } from "react";
+import "../styles/Auth.css";
 
-export default function Login() {
-  const [isLogin, setIsLogin] = useState(true)
+function Login() {
+    const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
 
-  // Read saved theme, or default to light
-  const [theme, setTheme] = useState(
-    () => localStorage.getItem('theme') || 'light'
-  )
+  const handleLogin = (e) => {
+  e.preventDefault();
 
-  // Apply theme to <html> and save it
-  useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme)
-    localStorage.setItem('theme', theme)
-  }, [theme])
-
-  const toggleTheme = () => {
-    setTheme(theme === 'light' ? 'dark' : 'light')
-  }
+  navigate("/dashboard");
+};
 
   return (
-    <div className="container">
-      <button className="theme-toggle" onClick={toggleTheme}>
-        {theme === 'light' ? '🌙' : '☀️'}
-      </button>
+    <div className="auth-page">
+      <div className="auth-container">
 
-      <div className="form-container">
-        <div className="form-toggle">
-          <button className={isLogin ? 'active' : ''} onClick={() => setIsLogin(true)}>
-            Login
-          </button>
-          <button className={!isLogin ? 'active' : ''} onClick={() => setIsLogin(false)}>
-            Register
-          </button>
+        {/* Left Branding Section */}
+        <div className="auth-brand">
+          <div className="brand-logo">PLANORA.</div>
+
+          <div className="brand-content">
+            <h2>Make every day a productive one.</h2>
+            <p>
+              Organize your tasks, manage your time,
+              and turn your goals into achievements.
+            </p>
+          </div>
+
+          <div className="brand-footer">
+            Plan smarter. Stay organized. Get things done.
+          </div>
         </div>
 
-        {isLogin ? (
-          <div className="form">
-            <h1>Login🎓</h1>
-            <input type="email" placeholder="Email" />
-            <input type="password" placeholder="Password" />
-            <a href="#" onClick={(e) => e.preventDefault()}>Forget Password?</a>
-            <button>Login</button>
-            <p>
-              Create an Account{' '}
-              <a href="#" onClick={(e) => { e.preventDefault(); setIsLogin(false) }}>
-                Register
+        {/* Login Form */}
+        <div className="auth-form-section">
+          <h1>Welcome Back!</h1>
+
+          <p className="auth-subtitle">
+            Enter your details to access your Planora account.
+          </p>
+
+          <form className="auth-form" onSubmit={handleLogin}>
+
+            <div className="form-group">
+              <label htmlFor="email">Email Address</label>
+              <input
+                id="email"
+                type="email"
+                placeholder="Enter your email"
+                required
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="password">Password</label>
+
+              <div className="password-wrapper">
+                <input
+                  id="password"
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Enter your password"
+                  required
+                />
+
+                <button
+                  type="button"
+                  className="password-toggle"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? "Hide" : "Show"}
+                </button>
+              </div>
+            </div>
+
+            <div className="auth-options">
+              <label>
+                <input type="checkbox" />
+                Remember me
+              </label>
+
+              <a href="#" className="auth-link"
+                onClick={(e) => e.preventDefault()}>
+                Forgot password?
               </a>
-            </p>
-          </div>
-        ) : (
-          <div className="form">
-            <h1>Register</h1>
-            <input type="text" placeholder="Name" />
-            <input type="email" placeholder="Email" />
-            <input type="password" placeholder="Password" />
-            <input type= "confirm password" placeholder="confirm Password"/>
-            <button>Register</button>
-            <p>
-              Already have an account?{' '}
-              <a href="#" onClick={(e) => { e.preventDefault(); setIsLogin(true) }}>
-                Login
-              </a>
-            </p>
-          </div>
-        )}
+            </div>
+
+            <button type="submit" className="auth-button">
+              Login to Planora
+            </button>
+
+          </form>
+
+          <p className="auth-bottom-text">
+            Don't have an account?{" "}
+            <Link to="/register" className="auth-link">
+              Create Account
+            </Link>
+          </p>
+
+        </div>
       </div>
     </div>
-  )
+  );
 }
+
+export default Login;
