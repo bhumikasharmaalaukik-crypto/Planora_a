@@ -1,1 +1,1 @@
-Planora - the website of task managment.
+||Planora|| - the website of task managment.
