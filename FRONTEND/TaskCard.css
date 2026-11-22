@@ -1,0 +1,219 @@
+
+/* =================================
+   PLANORA TASK CARD DESIGN
+================================= */
+
+.task-card {
+  background: #ffffff;
+  padding: 22px;
+  border-radius: 16px;
+  border: 1px solid #f0e2e9;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s ease;
+  position: relative;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.task-card:hover {
+  transform: translateY(-4px);
+  border-color: #c982a3;
+  box-shadow: 0 10px 24px rgba(201, 130, 163, 0.15);
+}
+
+/* Task Header */
+
+.task-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+/* Priority Badges */
+
+.priority-badge {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.priority-high {
+  background: #fde2e2;
+  color: #c0392b;
+}
+
+.priority-medium {
+  background: #fff0cc;
+  color: #a66a00;
+}
+
+.priority-low {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+/* Checkbox */
+
+.task-card-header input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #c982a3;
+  cursor: pointer;
+}
+
+/* Task Title */
+
+.task-card h3 {
+  font-size: 18px;
+  color: #333333;
+  margin: 0 0 10px;
+  line-height: 1.4;
+}
+
+/* Task Description */
+
+.task-description {
+  color: #888888;
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 18px;
+}
+
+/* Due Date */
+
+.task-due-date {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  color: #777777;
+  font-size: 13px;
+  margin-bottom: 18px;
+}
+
+/* Action Buttons */
+
+.task-card-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.edit-btn,
+.delete-btn {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 13px;
+  transition: all 0.2s ease;
+}
+
+.edit-btn {
+  background: #f8eaf0;
+  color: #a7557d;
+}
+
+.delete-btn {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.edit-btn:hover {
+  background: #efd5e1;
+  transform: translateY(-2px);
+}
+
+.delete-btn:hover {
+  background: #fecaca;
+  transform: translateY(-2px);
+}
+
+/* Completed Task */
+
+.task-card.task-completed {
+  background: #fafafa;
+  border-color: #e5e5e5;
+}
+
+.task-card.task-completed h3 {
+  text-decoration: line-through;
+  color: #999999;
+}
+
+.task-card.task-completed .task-description {
+  color: #aaaaaa;
+}
+
+.completed-label {
+  margin-top: 14px;
+  color: #15803d;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* Keyboard Focus */
+
+.edit-btn:focus-visible,
+.delete-btn:focus-visible,
+.task-card-header input:focus-visible {
+  outline: 2px solid #c982a3;
+  outline-offset: 3px;
+}
+
+/* Mobile Responsive */
+
+@media (max-width: 480px) {
+  .task-card {
+    padding: 17px;
+    border-radius: 12px;
+  }
+
+  .task-card h3 {
+    font-size: 16px;
+  }
+
+  .task-description {
+    font-size: 13px;
+  }
+
+  .task-card-actions button {
+    flex: 1;
+  }
+}
+/* Dashboard Task Action Buttons */
+
+.edit-btn,
+.delete-btn {
+  padding: 9px 14px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.edit-btn:hover,
+.delete-btn:hover {
+  transform: translateY(-2px);
+}
+
+.dark-mode .edit-btn {
+  background: #493b49;
+  color: #f2b6d0;
+}
+
+.dark-mode .edit-btn:hover {
+  background: #5b485b;
+}
+
+.dark-mode .delete-btn {
+  background: #59343d;
+  color: #ffc4ce;
+}
+
+.dark-mode .delete-btn:hover {
+  background: #70404b;
+}
